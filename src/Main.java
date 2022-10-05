@@ -12,7 +12,7 @@ public class Main {
 
              System.out.print("Please enter an operation: ");
              char userAnswer = scan.next().charAt(0);
-
+             scan.nextLine();
             if(userAnswer == 'a' || userAnswer == 'A'){
                 ints = getUserValues();
                 addition(ints[0], ints[1]);
@@ -31,8 +31,10 @@ public class Main {
             }
 
             System.out.print("Would you like to perform another operation (y/n): ");
+
             char temp = scan.next().charAt(0);
             scan.close();
+
             if(temp == 'y' || temp == 'Y'){
                 userAnswerMaster = true;
             }else if(temp == 'n' || temp == 'N'){
@@ -62,6 +64,7 @@ public class Main {
         return ints;
 
     }
+
     public static void displayMenu(){
         System.out.print("Welcome to the CLI Calculator\n");
         System.out.println("Operations: ");
@@ -73,6 +76,7 @@ public class Main {
         System.out.println("    e: Exit");
         System.out.println();
     }
+
     public static void addition(int a, int b){
         System.out.println("The sum of " + a + " + " + b + " = " + (a+b));
     }
@@ -92,8 +96,7 @@ public class Main {
             temp = getUserValues();
             division(temp[0],temp[1]);
         }else{
-            double answer = ((double)temp[0])/((double)temp[1]);
-
+            float answer = ((float)a)/((float)b);
             System.out.printf("The division of " + a + " " + " / " + b + " =  %.2f" + "\n", answer);
 
         }
