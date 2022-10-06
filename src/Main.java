@@ -4,46 +4,56 @@ public class Main {
     public static void main(String[] args) {
 
          boolean userAnswerMaster = true;
-         int[] ints = new int[2];
+         int[] ints;
+        Scanner scan = new Scanner(System.in);
 
-         while(userAnswerMaster){
+         while(userAnswerMaster) {
              displayMenu();
-             Scanner scan = new Scanner(System.in);
+
 
              System.out.print("Please enter an operation: ");
              char userAnswer = scan.next().charAt(0);
              scan.nextLine();
-            if(userAnswer == 'a' || userAnswer == 'A'){
-                ints = getUserValues();
-                addition(ints[0], ints[1]);
-            }else if(userAnswer == 's' || userAnswer == 'S'){
-                ints = getUserValues();
-                subtraction(ints[0], ints[1]);
-            }else if(userAnswer == 'm' || userAnswer == 'M'){
-                ints = getUserValues();
-                multiplication(ints[0], ints[1]);
-            }else if(userAnswer == 'd' || userAnswer == 'D'){
-                ints = getUserValues();
-                division(ints[0],ints[1]);
-            }else{
-                System.out.println("Please enter a valid input, Thank you");
-                main(null);
-            }
+             if (userAnswer == 'a' || userAnswer == 'A') {
+                 ints = getUserValues();
+                 addition(ints[0], ints[1]);
+             } else if (userAnswer == 's' || userAnswer == 'S') {
+                 ints = getUserValues();
+                 subtraction(ints[0], ints[1]);
+             } else if (userAnswer == 'm' || userAnswer == 'M') {
+                 ints = getUserValues();
+                 multiplication(ints[0], ints[1]);
+             } else if (userAnswer == 'd' || userAnswer == 'D') {
+                 ints = getUserValues();
+                 division(ints[0], ints[1]);
+             } else if (userAnswer == 'e' || userAnswer == 'E') {
+                 System.out.println("You have selected to exit, Thank you, have a nice Day, Burd Brain.");
+                 userAnswerMaster = false;
+             } else {
+                 System.out.println("Please enter a valid input, Thank you");
+                 main(null);
+             }
 
-            System.out.print("Would you like to perform another operation (y/n): ");
+             Scanner scan2 = new Scanner(System.in);
+             System.out.print("Would you like to perform another operation (y/n): ");
+             String temp2 = scan2.next();
+             scan2.close();
+             char temp = temp2.charAt(0);
+             if (temp == 'y' || temp == 'Y') {
+                 userAnswerMaster = true;
+                 //main(null);
+             } else if (temp == 'n' || temp == 'N') {
+                 System.out.println("You have selected to exit, Thank you, have a nice Day, Burd Brain.");
+                 scan.close();
+                 scan2.close();
+                 userAnswerMaster = false;
+             } else {
+                 System.out.println("You're not very good at following directions, Exiting......");
+                 userAnswerMaster = false;
+                 scan.close();
+                 scan2.close();
+             }
 
-            char temp = scan.next().charAt(0);
-            scan.close();
-
-            if(temp == 'y' || temp == 'Y'){
-                userAnswerMaster = true;
-            }else if(temp == 'n' || temp == 'N'){
-                System.out.println("You have selected to exit, Thank you, have a nice Day Burd Brain.");
-                userAnswerMaster = false;
-            }else{
-                System.out.println("You're not very good at following directions, Exiting......");
-                userAnswerMaster = false;
-            }
          }
 
     }
@@ -51,16 +61,14 @@ public class Main {
     public static int[] getUserValues(){
         int[] ints = new int[2];
 
-        Scanner scan = new Scanner(System.in);
+        Scanner temp = new Scanner(System.in);
         System.out.print("Please enter a integer value for A: ");
-        ints[0] = scan.nextInt();
+        ints[0] = temp.nextInt();
         System.out.println();
 
         System.out.print("Please enter an integer value for B: ");
-        ints[1] = scan.nextInt();
+        ints[1] = temp.nextInt();
         System.out.println();
-
-        scan.close();
         return ints;
 
     }
