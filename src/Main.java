@@ -3,17 +3,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-         boolean userAnswerMaster = true;
+         boolean userAnswerMaster;
          int[] ints;
-        Scanner scan = new Scanner(System.in);
+            Scanner scan = new Scanner(System.in);
 
-         while(userAnswerMaster) {
+          do{
              displayMenu();
-
-
              System.out.print("Please enter an operation: ");
-             char userAnswer = scan.next().charAt(0);
-             scan.nextLine();
+             String userInput = scan.nextLine();
+             char userAnswer = userInput.charAt(0);
+
              if (userAnswer == 'a' || userAnswer == 'A') {
                  ints = getUserValues();
                  addition(ints[0], ints[1]);
@@ -28,7 +27,7 @@ public class Main {
                  division(ints[0], ints[1]);
              } else if (userAnswer == 'e' || userAnswer == 'E') {
                  System.out.println("You have selected to exit, Thank you, have a nice Day, Burd Brain.");
-                 userAnswerMaster = false;
+                 break;
              } else {
                  System.out.println("Please enter a valid input, Thank you");
                  main(null);
@@ -37,24 +36,21 @@ public class Main {
              Scanner scan2 = new Scanner(System.in);
              System.out.print("Would you like to perform another operation (y/n): ");
              String temp2 = scan2.next();
-             scan2.close();
+
              char temp = temp2.charAt(0);
              if (temp == 'y' || temp == 'Y') {
+
                  userAnswerMaster = true;
                  //main(null);
              } else if (temp == 'n' || temp == 'N') {
                  System.out.println("You have selected to exit, Thank you, have a nice Day, Burd Brain.");
-                 scan.close();
-                 scan2.close();
                  userAnswerMaster = false;
              } else {
                  System.out.println("You're not very good at following directions, Exiting......");
                  userAnswerMaster = false;
-                 scan.close();
-                 scan2.close();
              }
 
-         }
+         }while(userAnswerMaster);
 
     }
 
@@ -94,18 +90,18 @@ public class Main {
     }
 
     public static void multiplication(int a, int b){
-        System.out.println("The multiplication of " + a + " " + " * " + b + " = " + (a*b));
+        System.out.println("The multiplication of " + a  + " * " + b + " = " + (a*b));
     }
 
     public static void division(int a, int b){
-        int[] temp = new int[2];
+        int[] temp;
         if(b == 0){
             System.out.println("Please enter a valid denominator, can not divide by Zero");
             temp = getUserValues();
             division(temp[0],temp[1]);
         }else{
             float answer = ((float)a)/((float)b);
-            System.out.printf("The division of " + a + " " + " / " + b + " =  %.2f" + "\n", answer);
+            System.out.printf("The division of " + a + " / " + b + " =  %.2f" + "\n", answer);
 
         }
     }
